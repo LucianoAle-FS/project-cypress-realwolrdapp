@@ -1,3 +1,12 @@
+# ADDITIONAL COMMENTS
+
+I created test cases for the money transfer feature of the Cypress IO Real World App project. I also automated the same test cases with Cypress.
+For more information on the tests created go to cypress -> tests -> e2e
+
+Below is information on how to install the project to run <br><br>
+
+
+
 <p align="center">
   <!-- We use two SVGs here so that this displays correctly
     on Github. This might not look right in other Markdown previewers. -->
