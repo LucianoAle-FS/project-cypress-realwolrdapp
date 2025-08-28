@@ -16,7 +16,7 @@ let awsConfig = {
 
 try {
   awsConfig = require(path.join(__dirname, "./aws-exports-es5.js"));
-} catch (e) {}
+} catch (e) { }
 
 module.exports = defineConfig({
   projectId: "7s5okt",
@@ -90,7 +90,7 @@ module.exports = defineConfig({
   },
   e2e: {
     baseUrl: "http://localhost:3000",
-    specPattern: "cypress/tests/**/*.spec.{js,jsx,ts,tsx}",
+    specPattern: "cypress/tests/**/*.{cy,spec}.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/e2e.ts",
     viewportHeight: 1000,
     viewportWidth: 1280,
