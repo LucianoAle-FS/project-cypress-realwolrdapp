@@ -20,7 +20,7 @@ class LoginPageReal{
         cy.get(this.selectorsList().usernameField).type(username)
         cy.get(this.selectorsList().passwordField).type(password)
         cy.get(this.selectorsList().submitLoginButton).click({ force: true })
-        checkPage.checkpagehome
+        checkPage.checkPageHome
         
     }
 

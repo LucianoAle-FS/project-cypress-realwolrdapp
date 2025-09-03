@@ -22,7 +22,7 @@ class RegisterPage {
         cy.get(this.selectorsList().password).clear().type(password)
         cy.get(this.selectorsList().confirmPassword).clear().type(confirmPassword)
         cy.get(this.selectorsList().submitButton).click()
-         cy.location('pathname').should('equals', '/signin')
+        cy.location('pathname').should('equals', '/signin')
     }
 
 

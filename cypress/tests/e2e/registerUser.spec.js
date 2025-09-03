@@ -1,5 +1,4 @@
 import LoginPageReal from "../../pages/loginPageReal"
-import database from "../../../data/database.json"
 import RegisterPage from "../../pages/registerPage"
 
 const Chance = require('chance');
@@ -14,6 +13,11 @@ describe('Register user Real Word App Tests', () => {
   it ('Register - Success', () => {
     loginPageReal.acessLoginPage()
     registerUser.registerAccount(chance.first(), chance.last(), chance.first({nationality: "it"}), "test123", "test123")
+  })
+
+  it ('Register - Fail', () => {
+    loginPageReal.acessLoginPage()
+    registerUser.registerAccount(chance.first(), chance.last(), " ", "test123", "test123")
   })
 
 
