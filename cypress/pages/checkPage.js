@@ -13,7 +13,7 @@ class CheckPage{
     }
 
     checkPageTranfer(){
-        cy.location('pathname').should('equals', 'http://localhost:3000/transaction/new')
+        cy.location('pathname').should('equals', '/transaction/new')
         cy.get(this.selectorsList().transferPage).should('be.visible')
     }
     

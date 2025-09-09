@@ -1,33 +1,57 @@
-import { Chance } from "chance"
 import CheckPage from "./checkPage"
+import MoneyAccountPage from "./moneyAccountPage";
 
-const chance = new Chance()
+
+
 const checkPage = new CheckPage()
+const moneyAccountPage = new MoneyAccountPage();
 
-class TransferMoneyPage{
-    
-    selectorsList(){
+
+class TransferMoneyPage {
+
+    selectorsList() {
         const selectors = {
             buttonNewTransfer: "[data-test='nav-top-new-transaction']",
-            personTransfer: "[data-test='user-list-item-GjWovtg2hr']",
+            personTransfer: ".css-1p823my-MuiListItem-root",
             valuerDeposit: "[name='amount']",
-            inforDeposti: "[placeholder='Add a note']"
-            
+            inforDeposti: "[placeholder='Add a note']",
+            buttonConfirm: "[data-test='transaction-create-submit-payment']",
+            ButtonBackHomePage: "[data-test='new-transaction-return-to-transactions']",
+            textNoValueDeposit: "[data-test='transaction-create-amount-input']"
+
         }
         return selectors
     }
-    depositMoney(){
-        cy.get(this.selectorsList().buttonNewTransfer).click()
-        checkPage.checkPageTranfer()
-        cy.get(this.selectorsList().personTransfer).click()
-        cy.get(this.selectorsList().valuerDeposit).clear().type(chance.dollar({Max: 250}))
 
-        cy.location('pathname').should('equals', 'localhost:3000')
-        cy.get(this.selectorsList().homepage).should('be.visible')
+    depositMoney() {
+        cy.get(this.selectorsList().buttonNewTransfer).click({ force: true })
+        checkPage.checkPageTranfer()
+
+        cy.get(this.selectorsList().personTransfer).first().click()
+
+        moneyAccountPage.valueAccount().then((randomValue) => {
+            cy.get(this.selectorsList().valuerDeposit).clear().type(randomValue.toString())
+        })
+
+        cy.get(this.selectorsList().inforDeposti).clear().type("teste 1")
+        cy.get(this.selectorsList().buttonConfirm).click({ force: true })
+        cy.get(this.selectorsList().ButtonBackHomePage).click()
+        //checkPage.checkPageHome()
+
     }
 
-   
-    
+    depositMoneyFail() {
+        cy.get(this.selectorsList().buttonNewTransfer).click({ force: true })
+        checkPage.checkPageTranfer()
+        cy.get(this.selectorsList().personTransfer).first().click()
+        cy.get(this.selectorsList().valuerDeposit).clear()
+        cy.get(this.selectorsList().textNoValueDeposit).should('be.visible')
+        cy.get(this.selectorsList().inforDeposti).clear().type("teste Sem Valor")
+        cy.get(this.selectorsList().buttonConfirm).should('be.disabled')
+    }
+
+
+
 }
 
 export default TransferMoneyPage

@@ -10,11 +10,18 @@ const loginPageReal = new LoginPageReal()
 
 
 describe('Login Real Word App Tests', () => {
+  
 
-  it('Login - Success', () => {
+  it('Transfer Money - Success', () => {
+    loginPageReal.acessLoginPage()
+    loginPageReal.loginWithUser(database.users[2].username,"s3cret" )
+    transferMoneyPage.depositMoney()
+  })
+
+  it('Transfer Money - Fail', () => {
     loginPageReal.acessLoginPage()
     loginPageReal.loginWithUser(database.users[0].username,"s3cret" )
-    transferMoneyPage.depositMoney
+    transferMoneyPage.depositMoneyFail()
   })
 
 })
